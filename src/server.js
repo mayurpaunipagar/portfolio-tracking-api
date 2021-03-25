@@ -13,7 +13,8 @@ mongoose
   .catch((e) => {
     console.Error("Error: " + e);
   });
-//creating user
+  
+//creating user,security 
 const userSchemaObj = {
   username: String,
   password: String,
@@ -81,7 +82,7 @@ securityModel.findOne({}).then((r) => {
 
 
 
-//adding trades
+//adding trades and modifying portfolio
 app.post('/buy',async (req,res)=>{
     const {noOfShares,amount,tickerSymbol,username}=req.body;
     
@@ -128,9 +129,11 @@ app.get('/portfolio',async (req,res)=>{
     res.send(allSecurities);
 })
 
+//just to test the server
 app.get("/", (req, res) => {
   res.send("Welcome to portfolio tracking api");
 });
+
 app.listen(process.env.PORT || 9000, () => {
   console.log("listening @ ", process.env.PORT || 9000);
 });
